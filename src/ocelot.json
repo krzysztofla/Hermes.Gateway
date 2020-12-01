@@ -1,4 +1,7 @@
 {
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:5000"
+  },
   "Routes": [
     {
       "UpstreamPathTemplate": "/Login/{everything}",
@@ -11,9 +14,24 @@
           "Port": 55143
         }
       ]
+    },
+    {
+      "DownstreamHostAndPorts": [
+          {
+              "Host": "localhost",
+              "Port": 55143
+          }
+      ],
+      "DownstreamPathTemplate": "/Identity/{id}",
+      "UpstreamPathTemplate": "/Identity/{id}",
+      "UpstreamHttpMethod": ["Get"],
+      "RouteIsCaseSensitive": false,
+      "DownstreamScheme": "http",
+      "AuthenticationOptions": {
+          "AuthenticationProviderKey": "wH-qwzfHo7sFi7oqphfoA_WdOrwZOJhXFAoecINcFAo",
+          "AllowedScopes": []
+      }
     }
   ],
-  "GlobalConfiguration": {
-    "BaseUrl": "https://localhost:5000"
-  }
+  "AsynchronousRoutes": []
 }
