@@ -4,7 +4,10 @@ using System.Threading.Tasks;
 using Hermes.Gateway.Infrastructure.ServiceBus;
 using Hermes.Gateway.Ocelot.Infrastructure.Settings;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Ocelot.Logging;
+using Ocelot.Middleware;
 
 namespace Hermes.Gateway.Infrastructure
 {
@@ -18,9 +21,10 @@ namespace Hermes.Gateway.Infrastructure
             this.routes = asynchronousRoutesOptions.Value.Routes;
         }
 
-        public Task InvokeAsync(HttpContext context, RequestDelegate next)
+        public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
-            throw new System.NotImplementedException();
+            await next(context);
+            return;
         }
     }
 }

@@ -1,15 +1,15 @@
+using Autofac;
+using Hermes.Gateway.Infrastructure;
+using Hermes.Gateway.Ocelot.Infrastructure.Settings;
+using Hermes.Gateway.Ocelot.IoC.Containers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Hermes.Gateway.Ocelot
 {
@@ -22,7 +22,12 @@ namespace Hermes.Gateway.Ocelot
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterModule(new ContainerModule(Configuration));
+        }
+
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();

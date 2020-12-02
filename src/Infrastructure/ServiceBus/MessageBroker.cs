@@ -1,4 +1,5 @@
-﻿using Microsoft.Azure.ServiceBus;
+﻿using Hermes.Gateway.Ocelot.Extensions.Markers;
+using Microsoft.Azure.ServiceBus;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Hermes.Gateway.Infrastructure.ServiceBus
 {
-    public class MessageBroker : IMessageBroker
+    public class MessageBroker : IMessageBroker, IService
     {
         private readonly IQueueClient queueClient;
         private readonly ILogger<MessageBroker> logger;
