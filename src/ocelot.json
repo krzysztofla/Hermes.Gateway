@@ -33,5 +33,13 @@
       }
     }
   ],
-  "AsynchronousRoutes": []
+  "AsynchronousRoutes": {
+    "NeedsAuthentication": false,
+    "Routes": {
+      "POST /example": {
+        "Queue": "example",
+        "Topic": "example_resource"
+      }
+    }
+  }
 }

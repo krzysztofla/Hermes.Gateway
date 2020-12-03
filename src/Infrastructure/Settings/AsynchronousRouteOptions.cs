@@ -7,7 +7,7 @@ namespace Hermes.Gateway.Ocelot.Infrastructure.Settings
 {
     public class AsynchronousRouteOptions
     {
-        public bool? IsAuthenticated { get; set; }
+        public bool? NeedsAuthentication { get; set; }
         public string Queue { get; set; }
         public string Topic { get; set; }
     }
