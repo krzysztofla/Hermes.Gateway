@@ -39,8 +39,8 @@ namespace Hermes.Gateway.Infrastructure
                 await next(context);
                 return;
             }
-
-            await messageBroker.SendMessagesAsync(new HermesMessage(route.Queue, route.Topic, routingKey, context.Request.Body.ToString()));
+            var messagebody = await new System.IO.StreamReader(context.Request.Body).ReadToEndAsync();
+            await messageBroker.SendMessagesAsync(new HermesMessage(route.Queue, route.Topic, routingKey, messagebody));
 
         }
 

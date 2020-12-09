@@ -25,9 +25,7 @@ namespace Hermes.Gateway.Infrastructure.ServiceBus
             try
             {
                     var topicClient = new TopicClient(serviceBusSettings.ConnectionString, hermesMessage.Topic);
-
-                    var messageBody = JsonConvert.SerializeObject(hermesMessage.Message);
-                    var message = new Message(Encoding.UTF8.GetBytes(messageBody));
+                    var message = new Message(Encoding.UTF8.GetBytes(hermesMessage.Message));
                     message.CorrelationId = hermesMessage.CorelationId;
 
                     await topicClient.SendAsync(message);

@@ -16,7 +16,6 @@ namespace Hermes.Gateway.Ocelot.IoC.Containers
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterModule<ServiceModule>();
-            builder.RegisterModule<ServiceBusModule>();
             builder.RegisterModule(new SettingsModule(configuration));
         }
     }
