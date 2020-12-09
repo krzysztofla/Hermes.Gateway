@@ -1,19 +1,45 @@
 {
-  "Routes": [
-    {
-      "DownstreamPathTemplate": "/todos/{id}",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "jsonplaceholder.typicode.com",
-          "Port": 443
-        }
-      ],
-      "UpstreamPathTemplate": "/todos/{id}",
-      "UpstreamHttpMethod": [ "Get" ]
-    }
-  ],
   "GlobalConfiguration": {
     "BaseUrl": "https://localhost:5000"
+  },
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/Login/{everything}",
+      "DownstreamPathTemplate": "/Login/{everything}",
+      "DownstreamScheme": "http",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 55143
+        }
+      ]
+    },
+    {
+      "DownstreamHostAndPorts": [
+          {
+              "Host": "localhost",
+              "Port": 55143
+          }
+      ],
+      "DownstreamPathTemplate": "/Identity/{id}",
+      "UpstreamPathTemplate": "/Identity/{id}",
+      "UpstreamHttpMethod": ["Get"],
+      "RouteIsCaseSensitive": false,
+      "DownstreamScheme": "http",
+      "AuthenticationOptions": {
+          "AuthenticationProviderKey": "wH-qwzfHo7sFi7oqphfoA_WdOrwZOJhXFAoecINcFAo",
+          "AllowedScopes": []
+      }
+    }
+  ],
+  "AsynchronousRoutes": {
+    "NeedsAuthentication": false,
+    "Routes": {
+      "POST /example": {
+        "Queue": "example",
+        "Topic": "example_resource"
+      }
+    }
   }
 }
